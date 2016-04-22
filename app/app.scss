@@ -1,0 +1,13 @@
+body {
+  display: flex;
+  min-height: 100%;
+  margin: 0;
+  color: #555;
+}
+
+#app {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-align: stretch;
+}

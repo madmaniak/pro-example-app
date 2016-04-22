@@ -1,4 +1,5 @@
 require './questions'
+require './app.scss'
 
 tag #app
 

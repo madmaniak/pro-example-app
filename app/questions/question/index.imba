@@ -4,6 +4,6 @@ tag question
 
 	def render
 		<self>
-			object:value
-			object:votes
+			<span.value> object:value
+			<span> object:votes
 			<voteup[object:id]>

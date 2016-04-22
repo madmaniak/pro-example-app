@@ -1,0 +1,30 @@
+._questions {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.order {
+  display: flex;
+  flex-direction: column-reverse;
+  flex: 1;
+}
+
+._question {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+._question > * {
+  flex: 1;
+}
+
+._question .value {
+  flex: 20;
+}
+
+._add-question input {
+  width: calc(100% - 24px);
+  margin: 10px;
+}

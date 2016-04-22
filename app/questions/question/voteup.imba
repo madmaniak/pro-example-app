@@ -8,4 +8,5 @@ tag voteup < button
 		<self> "+"
 
 	def onclick
+		@dom:disabled = true
 		Dispatcher.send event: 'app/questions/question/voteup', id: object

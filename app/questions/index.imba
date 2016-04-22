@@ -1,5 +1,6 @@
 require './question'
 require './add_question'
+require('./questions.scss')
 
 tag questions
 
@@ -12,8 +13,9 @@ tag questions
 	def render
 		<self>
 			<h1> "Ask your questions"
-			question(el) for el in L.values(Store:collections:questions)
 			<add_question>
+			<.order>
+				question(el) for el in L.values(Store:collections:questions)
 
 	def question(el)
-		<question[el]@{el:id}>
+		<question[el]@{el:id} style="order: {el:votes}">
