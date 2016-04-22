@@ -5,6 +5,7 @@ tag questions
 
 	def build
 		document:title = "Questions?"
+		Dispatcher.send event: 'app/questions/get'
 		render
 		self
 

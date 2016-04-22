@@ -10,4 +10,5 @@ gem 'require_all'
 gem 'semantic_logger'
 
 # your gems:
-
+gem 'sequel'
+gem 'sqlite3'

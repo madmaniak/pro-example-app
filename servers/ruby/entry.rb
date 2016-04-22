@@ -6,6 +6,9 @@ require_relative 'service'
 require_relative 'disque'
 
 require 'connection_pool'
+require 'sequel'
+
+$db = Sequel.sqlite('app.db')
 
 connect_disque = ->{ Disque.new(['127.0.0.1:7711']) }
 $dis = ConnectionPool.new(size: 6, timeout: 2) { connect_disque.call }
@@ -17,13 +20,19 @@ module Front::Components; end
 module Front::Services; end
 
 service_names = Dir['../../{app,components,services}/**/*.rb'].map{ |file|
-  require_relative file
-  "front/#{file[6...-3]}" # rm ../../ and .rb and add front/
-}
+  unless file =~ /migration/
+    require_relative file
+    "front/#{file[6...-3]}" # rm ../../ and .rb and add front/
+  end
+}.compact
 
 services = service_names.reduce({}){ |h, name|
   service = name.camelize.constantize.new
   h[name] = service; h
+}
+
+Dir['../../{app,components,services}/**/migration'].map{ |migration|
+  require_relative migration
 }
 
 NAME = 0
