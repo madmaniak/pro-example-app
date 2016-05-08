@@ -12,5 +12,5 @@ primusO.on 'data', (data) ->
   console.log data
   if data.event
     Dispatcher.trigger data.event, data
-  else
+  else if data != "benchmarked!"
     Store.update JSON.parse(data)
