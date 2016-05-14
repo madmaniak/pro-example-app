@@ -1,4 +1,4 @@
-## Pro - UDD polyglot anti-framework for the web or whatever
+## Pro - UDD polyglot anti-framework for modern web and standalone applications
 
 [![Join the chat at https://gitter.im/madmaniak/pro](https://badges.gitter.im/madmaniak/pro.svg)](https://gitter.im/madmaniak/pro?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -21,9 +21,15 @@ Read there also about needed dependencies. Then just:
 foreman start
 ```
 
+Visit [http://localhost:3000](http://localhost:3000). Blank page means good.
+
 ### Upgrade Pro to the newest version
 
 ```
 git pull pro master
 git push
 ```
+
+### Example app ###
+
+[pro-example-app](https://github.com/madmaniak/pro-example-app).
