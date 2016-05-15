@@ -10,8 +10,8 @@ primusO.on 'open', ->
 Dispatcher.send = (data) -> primusI.write data
 primusO.on 'data', (data) ->
   console.log data
-  unless data == "benchmarked!"
-    parsed_data = JSON.parse(data)
+  parsed_data = JSON.parse(data).data
+  unless parsed_data == "benchmarked!"
     if parsed_data.event
       Dispatcher.trigger parsed_data.event, parsed_data
     else
