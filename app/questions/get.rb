@@ -2,9 +2,7 @@ module Front::App::Questions
   class Get < Service
 
     def perform(data)
-      reply sid: data['sid'], data: {
-        questions: $db[:questions].all.inject({}){ |h,q| h[q[:id]] = q; h }
-      }
+      send_data(data['sid'], :questions) { |collection| collection.all }
     end
 
   end
