@@ -1,5 +1,3 @@
-require 'imba'
-
 require './../app'
 
 def window.start
