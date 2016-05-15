@@ -1,4 +1,6 @@
 global.L = require('lodash')
+require('./helpers')
 require('./dialog')
+require('./store')
 
-require('./boot')
+require('./custom')

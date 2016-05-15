@@ -8,7 +8,7 @@ global.Store =
     L.at @collections[data.name], data.value
 
   update: (collections) ->
-    L.smartMerge @collections, collections
+    L.mergeWithArrays @collections, collections
     render()
 
   delete: (scope) ->

@@ -11,6 +11,6 @@ L.mixin toHash: (array) ->
 
   hash
 
-L.mixin smartMerge: (object, values) ->
+L.mixin mergeWithArrays: (object, values) ->
   L.mergeWith object, values, (old_v, new_v) ->
     old_v.concat(new_v) if L.isArray(old_v)

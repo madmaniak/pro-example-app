@@ -1,7 +1,5 @@
 require 'imba'
 
-require './../services/helpers'
-require './../services/store'
 require './../app'
 
 def window.start

@@ -19,8 +19,10 @@ module Front::App; end
 module Front::Components; end
 module Front::Services; end
 
+DONT_LOAD_REGEXP = /migration/
+
 service_names = Dir['../../{app,components,services}/**/*.rb'].map{ |file|
-  unless file =~ /migration/
+  unless file =~ DONT_LOAD_REGEXP
     require_relative file
     "front/#{file[6...-3]}" # rm ../../ and .rb and add front/
   end
