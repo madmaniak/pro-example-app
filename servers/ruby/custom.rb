@@ -1,3 +1,7 @@
+require 'sequel'
+
+$db = Sequel.sqlite('app.db')
+
 class Service
 
   private
