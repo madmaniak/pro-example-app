@@ -3,3 +3,4 @@
 /servers/*/npm-debug.log*
 /servers/ruby/development.log
 /servers/ruby/app.db
+/.vagrant
