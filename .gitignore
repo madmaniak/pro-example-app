@@ -1,6 +1,7 @@
-/nodes.conf
-/servers/*/node_modules/*
-/servers/*/npm-debug.log*
-/servers/ruby/development.log
-/servers/ruby/app.db
-/.vagrant
+nodes.conf
+servers/*/node_modules/*
+servers/*/npm-debug.log*
+servers/ruby/development.log
+servers/ruby/app.db
+.vagrant
+_site
