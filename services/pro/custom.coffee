@@ -1,2 +1,0 @@
-require 'imba'
-require('./../boot')
