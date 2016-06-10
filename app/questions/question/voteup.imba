@@ -1,6 +1,5 @@
-Dispatcher.on 'voteup', do |data|
-	Store:collections:questions[data:id]:votes += 1
-	render
+Actions['app/questions/question/voteup'] = do |object|
+	object:votes += 1
 
 tag voteup < button
 
@@ -9,4 +8,4 @@ tag voteup < button
 
 	def onclick
 		@dom:disabled = true
-		Dispatcher.send event: 'app/questions/question/voteup', id: object
+		Store.update object, 'app/questions/question/voteup'
