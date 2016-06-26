@@ -23,18 +23,22 @@ tag sketchpad < canvas
 
 	def ontouchstart t
 		t.capture
-		t:data = Path2D.new
+		t:data = {}
 		Store.add :paths, t:data
 
 	def ontouchupdate t
-		let path = t:data
-		Store.add :dots, { x: t.tx, y: t.ty }, [path]
-		path.lineTo(t.tx * dpr, t.ty * dpr)
-		draw(path)
+		Store.add :dots, { x: t.tx, y: t.ty }, [t:data]
 
 	def render
-		draw(path) for path in L.values(Data:collections:paths)
+		draw(path) for path in L.values(Store:collections:paths)
 		<self>
 
-	def draw path
-		context('2d').stroke(path)
+	def draw(data)
+		let dots = Store.get :dots, data:dots
+		let dots_to_draw = L.takeRight dots, dots:length - (data:_cursor || 0)
+		data:_cursor = dots:length
+		data:_path ||= Path2D.new
+
+		if dots_to_draw:length
+			data:_path.lineTo(dot:x * dpr, dot:y * dpr ) for dot in dots_to_draw
+			context('2d').stroke(data:_path)
