@@ -1,7 +1,3 @@
-require 'sequel'
-
-$db = Sequel.sqlite('app.db')
-
 class Service
 
   private
@@ -9,7 +5,10 @@ class Service
   def send_data(sid, collection)
     data = yield $db[collection]
     hash = {}
-    hash[collection] = data.inject({}){ |h,q| h[q[:id]] = q; h }
+    hash[collection] = data.inject({}){ |h,q|
+      h[q[:id]] = q[:data].merge id: q[:id], version: q[:version], type: collection
+      h
+    }
 
     reply sid: sid, data: hash
   end

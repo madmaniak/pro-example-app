@@ -7,7 +7,6 @@ tag questions
 	def build
 		document:title = "Questions?"
 		Dispatcher.send event: 'app/questions/get'
-		render
 		self
 
 	def render
@@ -15,7 +14,7 @@ tag questions
 			<h1> "Ask your questions"
 			<add_question>
 			<.order>
-				question(el) for el in L.values(Data:collections:questions)
+				question(el) for el in L.values(Store:collections:questions)
 
 	def question(el)
 		<question[el]@{el:id} style="order: {el:votes}">

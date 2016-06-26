@@ -1,5 +1,4 @@
-Actions['app/questions/question/voteup'] = do |object|
-	object:votes += 1
+require './action'
 
 tag voteup < button
 

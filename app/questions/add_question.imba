@@ -8,4 +8,4 @@ tag add_question < form
 		e.cancel
 		var value = @field.value
 		@field.value = ""
-		Dispatcher.send event: 'app/questions/add', value: value
+		Store.add :questions, value: value, votes: 0
