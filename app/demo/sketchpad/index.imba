@@ -21,6 +21,10 @@ extend tag canvas
 
 tag sketchpad < canvas
 
+	def build
+		Dispatcher.send event: 'app/demo/sketchpad/get_paths'
+		self
+
 	def ontouchstart t
 		t.capture
 		t:data = {}
