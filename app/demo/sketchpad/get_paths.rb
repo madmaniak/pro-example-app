@@ -1,9 +1,7 @@
-module Front::App::Demo
-  module Sketchpad
-    class GetPaths < Getter
-      setup \
-        base: :paths,
-        relations: { dots: Sketchpad::Path::GetDots }
-    end
-  end
+Getter __FILE__ do
+
+  setup \
+    base: :paths,
+    relations: { dots: Path::GetDots }
+
 end
