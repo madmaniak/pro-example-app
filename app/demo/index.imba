@@ -1,5 +1,3 @@
-require './sketchpad'
-
 tag demo
 
 	def render

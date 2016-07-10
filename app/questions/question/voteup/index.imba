@@ -1,5 +1,3 @@
-require './action'
-
 tag voteup < button
 
 	def render

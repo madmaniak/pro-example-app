@@ -1,7 +1,3 @@
-require './question'
-require './add_question'
-require('./questions.scss')
-
 tag questions
 
 	def build

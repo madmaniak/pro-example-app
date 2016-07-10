@@ -1,5 +1,3 @@
-require './sketchpad.scss'
-
 extend tag canvas
 
 	def dpr

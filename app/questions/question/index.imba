@@ -1,5 +1,3 @@
-require('./voteup')
-
 tag question
 
 	def render
