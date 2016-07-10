@@ -6,7 +6,7 @@ module.exports =
     Dispatcher.send {
       object: L.assign {}, object
       relations: L.map(relations, L.reference)
-      event: 'services/pro/store/add'
+      event: L.ns(__filename, 'add')
     }
     arguments
 
@@ -15,7 +15,7 @@ module.exports =
       params
       transition
       ref: L.reference(object)
-      event: 'services/pro/store/update'
+      event: L.ns(__filename, 'update')
       v: object.v
     }
     arguments
@@ -23,7 +23,7 @@ module.exports =
   delete: (object) ->
     Dispatcher.send {
       ref: L.reference(object)
-      event: 'services/pro/store/delete'
+      event: L.ns(__filename, 'delete')
     }
     arguments
 
