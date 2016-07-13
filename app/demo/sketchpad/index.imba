@@ -42,5 +42,7 @@ tag sketchpad < canvas
 		data:_path ||= Path2D.new
 
 		if dots_to_draw:length
-			data:_path.lineTo(dot:x * dpr, dot:y * dpr ) for dot in dots_to_draw
+			for dot in dots_to_draw
+				if dot
+					data:_path.lineTo(dot:x * dpr, dot:y * dpr )
 			context('2d').stroke(data:_path)
