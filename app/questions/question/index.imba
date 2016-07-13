@@ -4,5 +4,5 @@ tag question
 		<self>
 			<span.value> object:value
 			<span> object:votes
-			<voteup[object]>
-			<del[object]>
+			<voteup[object]> '+'
+			<del[object]> 'x'
