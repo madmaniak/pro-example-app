@@ -20,7 +20,7 @@ extend tag canvas
 tag sketchpad < canvas
 
 	def build
-		Dispatcher.send event: L.ns(__filename, :get_paths)
+		Requests.perform L.ns(__filename, :get_paths)
 		self
 
 	def ontouchstart t

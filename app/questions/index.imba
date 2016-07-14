@@ -2,7 +2,7 @@ tag questions
 
 	def build
 		document:title = "Questions?"
-		Dispatcher.send event: L.ns(__filename, :get)
+		Requests.perform L.ns(__filename, :get)
 		self
 
 	def render
