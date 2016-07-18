@@ -20,7 +20,7 @@ extend tag canvas
 tag sketchpad < canvas
 
 	def build
-		Requests.perform L.ns(__filename, :get_paths)
+		Requests.perform L.ns(__dirname, :get_paths)
 		self
 
 	def ontouchstart t

@@ -2,7 +2,7 @@ tag questions
 
 	def build
 		document:title = "Questions?"
-		Requests.perform L.ns(__filename, :get)
+		Requests.perform L.ns(__dirname, :get)
 		self
 
 	def render
