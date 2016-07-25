@@ -2,16 +2,18 @@ tag questions
 
 	def build
 		document:title = "Questions?"
-		Requests.perform L.ns(__dirname, :get)
+		@getter = Getter:list[L.ns(__dirname, :get)].new
+		@getter.load
+		render
 		self
 
 	def render
 		<self>
 			<h1> "Ask your questions"
 			<add_question>
-			<.order>
-				question(el) for el in L.values(Store:collections:questions)
+			<.list>
+				question(el) for el in @getter.collection
 			<more_questions> 'More'
 
 	def question(el)
-		<question[el]@{el:id} style="order: {el:votes}">
+		<question[el]@{el:id}>

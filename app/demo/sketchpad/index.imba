@@ -20,23 +20,25 @@ extend tag canvas
 tag sketchpad < canvas
 
 	def build
-		Requests.perform L.ns(__dirname, :get_paths)
+		@getter = Getter:list[L.ns(__dirname, :get_paths)].new
+		@getter.load
+		render
 		self
 
 	def ontouchstart t
 		t.capture
 		t:data = {}
-		Store.add :paths, t:data
+		@getter.create t:data
 
 	def ontouchupdate t
-		Store.add :dots, { x: t.tx, y: t.ty }, [t:data]
+		t:data:dots.create { x: t.tx, y: t.ty }
 
 	def render
-		draw(path) for path in L.values(Store:collections:paths)
+		draw(path) for path in @getter.collection
 		<self>
 
 	def draw(data)
-		let dots = Store.get :dots, data:dots
+		let dots = data:dots.collection
 		let dots_to_draw = L.takeRight dots, dots:length - (data:_cursor || 0)
 		data:_cursor = dots:length
 		data:_path ||= Path2D.new

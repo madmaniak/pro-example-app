@@ -2,7 +2,8 @@ Getter __FILE__ do
 
   setup \
     base: :questions,
-    scope: ->(ds, params) { ds.reverse(field('votes'), :id).limit(5) },
-    fields: [:value, :votes]
+    fields: [:value, :votes],
+    order: [ [field('votes').cast(:int), true], [:id, true] ],
+    limit: 5
 
 end
