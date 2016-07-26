@@ -10,7 +10,7 @@ tag questions
 	def render
 		<self>
 			<h1> "Ask your questions"
-			<add_question>
+			<add_question[@getter]>
 			<.list>
 				question(el) for el in @getter.collection
 			<more_questions> 'More'

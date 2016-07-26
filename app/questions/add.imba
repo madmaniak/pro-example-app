@@ -8,4 +8,4 @@ tag add_question < form
 		e.cancel
 		var value = @field.value
 		@field.value = ""
-		Store.add :questions, value: value, votes: 0
+		object.create value: value, votes: 0
