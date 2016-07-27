@@ -29,9 +29,10 @@ tag sketchpad < canvas
 		t.capture
 		t:data = {}
 		@getter.create t:data
+		@i = 1
 
 	def ontouchupdate t
-		t:data:dots.create { x: t.tx, y: t.ty }
+		t:data:dots.create { x: t.tx, y: t.ty, i: @i++ }
 
 	def render
 		draw(path) for path in @getter.collection

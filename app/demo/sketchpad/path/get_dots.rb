@@ -3,7 +3,7 @@ Getter __FILE__ do
   setup \
     base: :dots,
     fields: [:x, :y],
-    order: [ [:id] ],
+    order: [ [field('i').cast(:int)] ],
     limit: false
 
 end

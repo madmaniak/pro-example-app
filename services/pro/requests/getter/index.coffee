@@ -37,7 +37,7 @@ class global.Getter
     if object = @_object(id)
     # still exists?
       # id in scope?
-      if (i = @index_of(object, id)) != -1
+      if (i = @index_of(object)) != -1
       then @reorder(i)
       else @scope.splice(i)
 
@@ -85,7 +85,7 @@ class global.Getter
       else l = m + 1
       m = H.half_way(l, r)
 
-  index_of: (object, id) ->
+  index_of: (object, id = object.id) ->
     i = @proper_index object
     return i if @scope[i] == id
     j = 1
