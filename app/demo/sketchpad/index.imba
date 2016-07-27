@@ -21,37 +21,36 @@ tag sketchpad < canvas
 
 	def build
 		@add_dot = L.throttle do |t|
-			t:data:dots.create { x: t.tx, y: t.ty, i: @i++ }
+			t:data:dots.add { x: t.tx, y: t.ty, i: @i++ }
 		, 20
-		@getter = Getter:list[L.ns(__dirname, :get_paths)].new
-		@getter.load
+		@paths = Collection:list[L.ns(__dirname, :get_paths)].new.load
 		render
 		self
 
 	def ontouchstart t
 		t.capture
 		t:data = {}
-		@getter.create t:data
+		@paths.add t:data
 		@i = 0
 
 	def ontouchupdate t
 		@add_dot t
 
 	def render
-		draw(path) for path in @getter.collection
+		draw(path) for path in @paths.elements
 		<self>
 
-	def draw(data)
+	def draw(path)
 		let dot
-		let dots = data:dots.collection
-		let i = data:_cursor || 0
+		let dots = path:dots.elements
+		let i = path:_cursor || 0
 
 		if i < dots:length
-			data:_path ||= Path2D.new
+			path:_path ||= Path2D.new
 			while i < dots:length
 				if dot = dots[i]
-					data:_path.lineTo(dots[i]:x * dpr, dot:y * dpr )
+					path:_path.lineTo(dots[i]:x * dpr, dot:y * dpr )
 				i++
 
-			context('2d').stroke(data:_path)
-			data:_cursor = dots:length
+			context('2d').stroke(path:_path)
+			path:_cursor = dots:length
