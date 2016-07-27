@@ -29,7 +29,7 @@ tag sketchpad < canvas
 		t.capture
 		t:data = {}
 		@getter.create t:data
-		@i = 1
+		@i = 0
 
 	def ontouchupdate t
 		t:data:dots.create { x: t.tx, y: t.ty, i: @i++ }
@@ -39,13 +39,16 @@ tag sketchpad < canvas
 		<self>
 
 	def draw(data)
+		let dot
 		let dots = data:dots.collection
-		let dots_to_draw = L.takeRight dots, dots:length - (data:_cursor || 0)
-		data:_cursor = dots:length
-		data:_path ||= Path2D.new
+		let i = data:_cursor || 0
 
-		if dots_to_draw:length
-			for dot in dots_to_draw
-				if dot
-					data:_path.lineTo(dot:x * dpr, dot:y * dpr )
+		if i < dots:length
+			data:_path ||= Path2D.new
+			while i < dots:length
+				if dot = dots[i]
+					data:_path.lineTo(dots[i]:x * dpr, dot:y * dpr )
+				i++
+
 			context('2d').stroke(data:_path)
+			data:_cursor = dots:length
