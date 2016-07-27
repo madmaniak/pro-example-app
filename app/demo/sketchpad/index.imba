@@ -20,6 +20,9 @@ extend tag canvas
 tag sketchpad < canvas
 
 	def build
+		@add_dot = L.throttle do |t|
+			t:data:dots.create { x: t.tx, y: t.ty, i: @i++ }
+		, 20
 		@getter = Getter:list[L.ns(__dirname, :get_paths)].new
 		@getter.load
 		render
@@ -32,7 +35,7 @@ tag sketchpad < canvas
 		@i = 0
 
 	def ontouchupdate t
-		t:data:dots.create { x: t.tx, y: t.ty, i: @i++ }
+		@add_dot t
 
 	def render
 		draw(path) for path in @getter.collection
