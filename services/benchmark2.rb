@@ -1,4 +1,4 @@
-class Front::Services::Benchmark2 < Service
+Service __FILE__ do
 
   def perform(data)
     reply data, data: { event: "benchmarked!" }

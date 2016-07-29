@@ -1,4 +1,4 @@
-class Front::Services::Benchmark < Service
+Service __FILE__ do
 
   def perform(data)
     sleep(1)
