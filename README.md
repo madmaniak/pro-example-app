@@ -4,40 +4,24 @@
 
 ### Start
 
-```
+```sh
 git clone git@github.com:madmaniak/pro-example-app.git
 cd pro-example-app
 ```
 
-#### Manual environment setup
+#### Setup and run
 
-Checkout [tools](https://github.com/madmaniak/pro/tree/master/tools) subdirectories
-and read there about dependencies. It takes about 30 minutes to install all of them.
+[Docker compose](https://docs.docker.com/compose/install) (version >= 1.9.0 recommended) is required.
 
-#### Auto setup using Vagrant
+```sh
+docker-compose up --build
 
-Install [Vagrant](https://www.vagrantup.com/downloads.html) (v1.8.1 or greater). If you've tried to install stuff manually make sure there is no ```node_modules``` directory in ```tools/webpack``` and ```tools/primus```.
+# it will download images and try to run pro but you will be notified
+# about missing configs - copy them from the examples
 
-```
-vagrant up
-vagrant ssh
-cd /vagrant
+docker-compuse up
 ```
 
-#### After setup
-
-Since there is no server in Pro dealing with migrations yet run one manually.
-
-```
-cd servers/ruby
-ruby ../../app/questions/migration.rb
-cd ../..
-```
-
-Then:
-
-```
-foreman start
-```
-
-Visit [http://localhost:3000](http://localhost:3000) and see simple app for asking questions.
+Visit [http://localhost:3000](http://localhost:3000)
+and
+[http://localhost:8000](http://localhost:8000) for database view.
