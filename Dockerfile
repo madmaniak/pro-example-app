@@ -11,11 +11,8 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
-RUN apt-get update && apt-get install -y lighttpd nodejs postgresql-client yarn && \
+RUN apt-get update && apt-get install -y nodejs postgresql-client yarn && \
 yarn global add browserify coffee-script derequire http-server webpack webpack-dev-server
-
-ADD framework/tools/consumers/ruby/Gemfile /pro/framework/tools/consumers/ruby/Gemfile
-RUN cd framework/tools/consumers/ruby && bundle install
 
 RUN mkdir -p /tmp/node_modules/primus/tmp/node_modules/webpack
 ADD framework/tools/communication/primus/package.json /tmp/node_modules/primus/package.json
