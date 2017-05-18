@@ -1,12 +1,10 @@
 tag questions
 
-	def build
-		document:title = "Questions?"
+	def setup
 		@questions = Collection:list[L.ns(__dirname, :get)].new.load
-		render
-		self
 
 	def render
+		document:title = "Questions?"
 		<self>
 			<h1> "Ask your questions"
 			<add_question[@questions]>

@@ -19,13 +19,11 @@ extend tag canvas
 
 tag sketchpad < canvas
 
-	def build
+	def setup
 		@add_dot = L.throttle do |t|
 			t:data:dots.add { x: t.tx, y: t.ty, i: @i++ }
 		, 20
 		@paths = Collection:list[L.ns(__dirname, :get_paths)].new.load
-		render
-		self
 
 	def ontouchstart t
 		t.capture
