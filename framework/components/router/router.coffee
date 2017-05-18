@@ -1,4 +1,14 @@
-global.Router =
+global.Router = global.R =
+
+  cache: {}
+  getters: {}
+  setters: {}
+
+  param: (key) ->
+    v = decodeURI(@params[key] || '')
+    if @getters[key]
+    then @cache[key] ||= @getters[key](v)
+    else v
 
   init: (@root) ->
     Router.read()
@@ -25,6 +35,7 @@ global.Router =
   to_path: (view = @view, params = @safe_params) ->
     '/' + L(params)
       .toPairs()
+      .reject (p) -> !p[1]
       .flatten()
       .tap (array) =>
         array.unshift(view) if view and view != @root
@@ -41,23 +52,33 @@ global.Router =
     history.pushState {}, null, path
     Dispatcher.trigger "url_changed"
 
-  write: ->
+  write: (values...) ->
+    # accept arguments keeping key, value, key, value order
+    # or a hash as a first argument
+    # serialize using setters
+    # if no argument given just refresh url and rerender
+
+    if values.length
+      if values.length == 1
+        L.each values[0], (v, k) ->
+          R.params[k] = if R.setters[k] then R.setters[k](v) else v
+      else
+        L.each values, (k, i) ->
+          unless i % 2
+            v = values[i+1]
+            R.params[k] = if R.setters[k] then R.setters[k](v) else v
+
     window.history.replaceState {},
       window.location.pathname, @to_path(@view, @params)
-    @read()
+    Dispatcher.trigger "url_changed"
 
   toggle: (flag, state) ->
-    if state?
-      if state
-        @params[flag] = 1
-      else
-        delete @params[flag]
-    else
-      if @params[flag]
-        delete @params[flag]
-      else
-        @params[flag] = 1
-    @go @to_path(@view, @params)
+    @write flag, if state?
+    then ( 1 if state )
+    else ( 1 if !@params[flag] )
 
 global.onpopstate = -> Dispatcher.trigger "url_changed"
-Dispatcher.on "url_changed", -> Router.read(); global.render()
+Dispatcher.on "url_changed", ->
+  Router.cache = {}
+  Router.read()
+  global.render()
