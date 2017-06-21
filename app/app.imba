@@ -1,5 +1,5 @@
 require '../framework/components/router/router_tag'
-Router.init :demo
+Router.init(views: Views, helpers: L, render: do global.render)
 
 tag #app
 
