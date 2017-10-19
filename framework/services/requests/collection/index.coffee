@@ -11,6 +11,8 @@ class global.Collection
       @belongs_to[@constructor.base] = @
       Store.collections[@constructor.path] = 1: @belongs_to
 
+  load: ->     @go {}, (scope) => @scope = scope
+
   elements: ->
     if @_v == @v
     then @_collection
@@ -106,6 +108,20 @@ class global.Collection
     -1
 
   _object: (id) -> Store.get(@constructor.base, id)[0]
+
+  go: (params, scope_f) ->
+    @done = false
+    query = L.merge(params, @params)
+    rk    = @constructor.path + L.stringify(query)
+
+    Dispatcher.once Requests.perform(@constructor.path, query), (reply) =>
+      # Cache.set rk, reply.raw
+      scope_f?.call(@, reply.scope); @v++
+      if @constructor.relations
+        L.each Store.get(@constructor.base, reply.scope), (object) =>
+          @_create_relations(object.id)
+      @done = true
+    @
 
 H =
   half_way: (l, r) ->

@@ -4,7 +4,6 @@ class Collection.Static extends Collection
     super
     @key_values = L.map @constructor.order, 0
 
-  load: ->     @go {}, (scope) => @scope = scope
   more: ->     @go ids: @scope
   page: (i, params = {}) ->
     new @constructor undefined, L.merge(params, page: i), @belongs_to
@@ -22,17 +21,3 @@ class Collection.Static extends Collection
     for attr in @key_values
       if v = object[attr] then key.push(v) else return id
     key
-
-  go: (params, scope_f) ->
-    @done = false
-    query = L.merge(params, @params)
-    rk    = @constructor.path + L.stringify(query)
-
-    Dispatcher.once Requests.perform(@constructor.path, query), (reply) =>
-      # Cache.set rk, reply.raw
-      scope_f?.call(@, reply.scope); @v++
-      if @constructor.relations
-        L.each Store.get(@constructor.base, reply.scope), (object) =>
-          @_create_relations(object.id)
-      @done = true
-    @
