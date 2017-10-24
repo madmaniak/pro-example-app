@@ -1,8 +1,0 @@
-bus:
-  build: framework/tools/bus/disque
-  extends:
-    file: framework/tools/containers/docker/common.yml
-    service: pro
-  command: disque-server
-  ports:
-    - "7711:7711"
