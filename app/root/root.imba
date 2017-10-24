@@ -1,4 +1,4 @@
-tag main
+tag root
 
 	def render
 		document:title = "Sketchpad demo"
