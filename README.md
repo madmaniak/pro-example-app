@@ -7,6 +7,8 @@
 ```sh
 git clone git@github.com:madmaniak/pro-example-app.git
 cd pro-example-app
+git submodule init
+git submodule update
 ```
 
 #### Setup and run
