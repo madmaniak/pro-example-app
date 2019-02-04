@@ -1,4 +1,4 @@
-require '../framework/components/router/router_tag'
+require '../framework/components/router/pro-imba-router/router_tag'
 Router.init(views: Views, helpers: L, render: do global.render)
 
 tag #app
