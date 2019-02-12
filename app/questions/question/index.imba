@@ -2,7 +2,7 @@ tag question
 
 	def render
 		<self>
-			<span.value> object:value
-			<span> object:votes
-			<voteup[object]> '+'
-			<del[object]> 'x'
+			<span.value> data:value
+			<span> data:votes
+			<voteup[data]> '+'
+			<del[data]> 'x'

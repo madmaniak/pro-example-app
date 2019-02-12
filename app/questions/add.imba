@@ -8,4 +8,4 @@ tag add_question < form
 		e.cancel
 		var value = @field.value
 		@field.value = ""
-		object.add value: value, votes: 0
+		data.add value: value, votes: 0
