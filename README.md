@@ -7,8 +7,9 @@
 ```sh
 git clone git@github.com:madmaniak/pro-example-app.git
 cd pro-example-app
-git submodule init
-git submodule update
+
+git submodule update --init --recursive
+./pro update
 ```
 
 #### Setup and run
@@ -16,15 +17,7 @@ git submodule update
 [Docker Compose](https://docs.docker.com/compose/install) (version >= 1.9.0 recommended) is required.
 
 ```sh
-# Build Docker configuration
-docker build -t pro:init -f framework/tools/containers/docker/Dockerfile . && docker run -v $(pwd):/pro pro:init
-
-docker-compose up --build
-
-# it will download images and try to run pro but you will be notified
-# about missing configs - copy them from the examples
-
-docker-compose up
+./pro start
 ```
 
 Visit [http://localhost:3000](http://localhost:3000)
